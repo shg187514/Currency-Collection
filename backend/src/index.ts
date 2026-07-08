@@ -16,30 +16,41 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Ensure uploads directory exists (Cross-platform)
-const uploadsDir = process.env.UPLOAD_DIRECTORY 
+const uploadsDir = process.env.UPLOAD_DIRECTORY
   ? path.resolve(process.env.UPLOAD_DIRECTORY)
   : path.join(process.cwd(), 'uploads');
-  
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-// Security Middleware
-app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+
+const allowedOrigins = [process.env.CORS_ORIGIN, 'http://localhost:5173'].filter(
+  (origin): origin is string => Boolean(origin)
+);
+
+// Security middleware
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173', // Vite default port
+  origin: allowedOrigins,
   credentials: true,
 }));
 app.use(express.json());
 
 // Serve uploaded files statically securely
 app.use('/uploads', express.static(uploadsDir, {
-  setHeaders: (res, path) => {
+  setHeaders: (res) => {
     // Prevent execution of malicious scripts inside uploads (e.g., SVG, HTML)
     res.setHeader('Content-Security-Policy', "default-src 'none'");
     res.setHeader('X-Content-Type-Options', 'nosniff');
   }
 }));
+
+app.get('/', (req: Request, res: Response) => {
+  res.json({ success: true, service: 'TreeSpace Backend', status: 'running' });
+});
 
 app.get('/api/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', message: 'TreeSpace API is running' });
@@ -51,24 +62,12 @@ app.use('/api/tags', tagsRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api', attachmentsRoutes);
 
-// Global Error Handler must be the last API middleware
-app.use(errorHandler);
+app.use((req: Request, res: Response) => {
+  res.status(404).json({ success: false, message: 'Not found' });
+});
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  const frontendBuildPath = path.join(process.cwd(), 'frontend', 'dist');
-  if (fs.existsSync(frontendBuildPath)) {
-    app.use(express.static(frontendBuildPath));
-    app.get('*', (req: Request, res: Response) => {
-      // Prevent intercepting API or Upload requests if they fell through
-      if (!req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
-        res.sendFile(path.join(frontendBuildPath, 'index.html'));
-      } else {
-        res.status(404).json({ success: false, message: 'Not found' });
-      }
-    });
-  }
-}
+// Global error handler must be the last middleware
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
