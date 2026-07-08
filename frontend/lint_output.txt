@@ -1,0 +1,361 @@
+
+> frontend@0.0.0 lint
+> oxlint
+
+
+  ! typescript(no-useless-empty-export): Empty exports do nothing in module files
+    ,-[src/providers/ThemeProvider.d.ts:14:1]
+ 13 | export declare const useTheme: () => ThemeProviderState;
+ 14 | export {};
+    : ^^^^^^^^^^
+    `----
+  help: Remove this empty export.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/lib/searchUtils.tsx:15:14]
+ 14 | // Flattens the tree and recursively builds the path of node IDs and titles for breadcrumbs
+ 15 | export const flattenTreeWithPaths = (nodes: NodeModel[], currentPath: string[] = [], currentBreadcrumbs: string[] = []): { node: NodeModel; path: string[]; breadcrumbs: string[] }[] => {
+    :              ^^^^^^^^^^^^^^^^^^^^
+ 16 |   let flatList: { node: NodeModel; path: string[]; breadcrumbs: string[] }[] = [];
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/lib/searchUtils.tsx:52:14]
+ 51 | 
+ 52 | export const searchTree = (nodes: NodeModel[], query: string, filter: SearchFilter = 'all'): SearchResult[] => {
+    :              ^^^^^^^^^^
+ 53 |   if (!query.trim()) return [];
+    `----
+
+  ! eslint(no-unused-vars): Parameter 'index' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/features/dashboard/Dashboard.tsx:166:52]
+ 165 |                 <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 dark:before:via-gray-700 before:to-transparent">
+ 166 |                   {stats.recentActivity.map((item, index) => (
+     :                                                    ^^|^^
+     :                                                      `-- 'index' is declared here
+ 167 |                     <div key={item.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+     `----
+  help: Consider removing this parameter.
+
+  ! eslint(no-unused-vars): Identifier 'ChevronLeft' is imported but never used.
+   ,-[src/features/workspace/WorkspaceHeader.tsx:4:10]
+ 3 | import { useNavigate, useParams } from 'react-router-dom';
+ 4 | import { ChevronLeft, ChevronRight, ChevronRight as BreadcrumbSeparator, Home } from 'lucide-react';
+   :          ^^^^^|^^^^^
+   :               `-- 'ChevronLeft' is imported here
+ 5 | import { fetchTree, NodeModel } from '../../lib/api';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'ChevronRight' is imported but never used.
+   ,-[src/features/workspace/WorkspaceHeader.tsx:4:23]
+ 3 | import { useNavigate, useParams } from 'react-router-dom';
+ 4 | import { ChevronLeft, ChevronRight, ChevronRight as BreadcrumbSeparator, Home } from 'lucide-react';
+   :                       ^^^^^^|^^^^^
+   :                             `-- 'ChevronRight' is imported here
+ 5 | import { fetchTree, NodeModel } from '../../lib/api';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Button' is imported but never used.
+   ,-[src/features/workspace/WorkspaceHeader.tsx:6:10]
+ 5 | import { fetchTree, NodeModel } from '../../lib/api';
+ 6 | import { Button } from '../../components/ui/Button';
+   :          ^^^|^^
+   :             `-- 'Button' is imported here
+ 7 | 
+   `----
+  help: Consider removing this import.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/providers/ThemeProvider.tsx:66:14]
+ 65 | 
+ 66 | export const useTheme = () => {
+    :              ^^^^^^^^
+ 67 |   const context = useContext(ThemeProviderContext);
+    `----
+
+  ! eslint(no-unused-vars): Catch parameter 'e' is caught but never used.
+    ,-[src/features/workspace/ActivityHistory.tsx:82:16]
+ 81 |         parsedChanges = JSON.parse(item.changes);
+ 82 |       } catch (e) {}
+    :                |
+    :                `-- 'e' is declared here
+ 83 |     }
+    `----
+  help: Consider handling this error.
+
+  ! eslint(no-unused-vars): Parameter 'index' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/features/workspace/ActivityHistory.tsx:111:29]
+ 110 |       <div className="relative border-l-2 border-gray-100 dark:border-gray-800 ml-3 space-y-6">
+ 111 |         {history.map((item, index) => (
+     :                             ^^|^^
+     :                               `-- 'index' is declared here
+ 112 |           <div key={item.id} className="relative pl-6">
+     `----
+  help: Consider removing this parameter.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'setIsSearchModalOpen', and 'handleSelectResult'
+    ,-[src/features/search/GlobalSearchModal.tsx:66:6]
+ 56 |         e.preventDefault();
+ 57 |         handleSelectResult(results[selectedIndex]);
+    :         ^^^^^^^^^^^^^^^^^^
+ 58 |       } else if (e.key === 'Escape') {
+ 59 |         e.preventDefault();
+ 60 |         setIsSearchModalOpen(false);
+    :         ^^^^^^^^^^^^^^^^^^^^
+ 61 |       }
+ 62 |     };
+ 63 | 
+ 64 |     window.addEventListener('keydown', handleKeyDown);
+ 65 |     return () => window.removeEventListener('keydown', handleKeyDown);
+ 66 |   }, [isSearchModalOpen, results, selectedIndex]);
+    :      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 67 | 
+    `----
+  help: Either include it or remove the dependency array.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/components/ui/Toast.tsx:69:14]
+ 68 | 
+ 69 | export const useToast = () => {
+    :              ^^^^^^^^
+ 70 |   const context = useContext(ToastContext);
+    `----
+
+  ! eslint(no-unused-vars): Variable 'expandToNode' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/features/sidebar/SidebarTreeNode.tsx:21:11]
+ 20 |   const { id } = useParams<{ id: string }>();
+ 21 |   const { expandToNode, selectedTagFilterId, addDraftNode, removeDraftNode } = useTreeStore();
+    :           ^^^^^^|^^^^^
+    :                 `-- 'expandToNode' is declared here
+ 22 |   const { deleteMutation, duplicateMutation, archiveMutation, toggleFavoriteMutation, updateMutation, createMutation, moveMutation } = useNodeMutations();
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Identifier 'TagIcon' is imported but never used.
+   ,-[src/features/tags/NodeTags.tsx:6:23]
+ 5 | import { TagBadge } from '../../components/ui/TagBadge';
+ 6 | import { Plus, Tag as TagIcon } from 'lucide-react';
+   :                       ^^^|^^^
+   :                          `-- 'TagIcon' is imported here
+ 7 | import { TagManagerModal } from './TagManagerModal';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Folder' is imported but never used.
+    ,-[src/features/sidebar/TreeSidebar.tsx:16:77]
+ 15 | import { fetchTags } from '../../lib/api';
+ 16 | import { Tag as TagIcon, X, Star, Clock, ChevronDown, ChevronRight, Trash2, Folder, FolderOpen } from 'lucide-react';
+    :                                                                             ^^^|^^
+    :                                                                                `-- 'Folder' is imported here
+ 17 | import { cn } from '../../lib/utils';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FolderOpen' is imported but never used.
+    ,-[src/features/sidebar/TreeSidebar.tsx:16:85]
+ 15 | import { fetchTags } from '../../lib/api';
+ 16 | import { Tag as TagIcon, X, Star, Clock, ChevronDown, ChevronRight, Trash2, Folder, FolderOpen } from 'lucide-react';
+    :                                                                                     ^^^^^|^^^^
+    :                                                                                          `-- 'FolderOpen' is imported here
+ 17 | import { cn } from '../../lib/utils';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Catch parameter 'e' is caught but never used.
+     ,-[src/features/sidebar/TreeSidebar.tsx:126:18]
+ 125 |           treeRef.current.open(id);
+ 126 |         } catch (e) {} // ignore errors if node is not found or already open
+     :                  |
+     :                  `-- 'e' is declared here
+ 127 |       });
+     `----
+  help: Consider handling this error.
+
+  ! eslint(no-unused-vars): Parameter 'dropTarget' is declared but never used. Unused parameters should start with a '_'.
+     ,-[src/features/sidebar/TreeSidebar.tsx:335:59]
+ 334 |               insertDroppableFirst={false}
+ 335 |               canDrop={(tree, { dragSource, dropTargetId, dropTarget }) => {
+     :                                                           ^^^^^|^^^^
+     :                                                                `-- 'dropTarget' is declared here
+ 336 |                 if (dragSource?.id === dropTargetId) {
+     `----
+  help: Consider removing this parameter.
+
+  ! eslint(no-unused-vars): Identifier 'format' is imported but never used.
+   ,-[src/features/workspace/Workspace.tsx:5:10]
+ 4 | import { useDebouncedCallback } from 'use-debounce';
+ 5 | import { format } from 'date-fns';
+   :          ^^^|^^
+   :             `-- 'format' is imported here
+ 6 | import { Tag, Paperclip, Calendar, Clock, FolderGit2, Plus, Trash2, ChevronLeft, ChevronRight, Edit2, Star, Folder, FileText } from 'lucide-react';
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Tag' is imported but never used.
+   ,-[src/features/workspace/Workspace.tsx:6:10]
+ 5 | import { format } from 'date-fns';
+ 6 | import { Tag, Paperclip, Calendar, Clock, FolderGit2, Plus, Trash2, ChevronLeft, ChevronRight, Edit2, Star, Folder, FileText } from 'lucide-react';
+   :          ^|^
+   :           `-- 'Tag' is imported here
+ 7 | import { fetchTree } from '../../lib/api'; 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Paperclip' is imported but never used.
+   ,-[src/features/workspace/Workspace.tsx:6:15]
+ 5 | import { format } from 'date-fns';
+ 6 | import { Tag, Paperclip, Calendar, Clock, FolderGit2, Plus, Trash2, ChevronLeft, ChevronRight, Edit2, Star, Folder, FileText } from 'lucide-react';
+   :               ^^^^|^^^^
+   :                   `-- 'Paperclip' is imported here
+ 7 | import { fetchTree } from '../../lib/api'; 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Calendar' is imported but never used.
+   ,-[src/features/workspace/Workspace.tsx:6:26]
+ 5 | import { format } from 'date-fns';
+ 6 | import { Tag, Paperclip, Calendar, Clock, FolderGit2, Plus, Trash2, ChevronLeft, ChevronRight, Edit2, Star, Folder, FileText } from 'lucide-react';
+   :                          ^^^^|^^^
+   :                              `-- 'Calendar' is imported here
+ 7 | import { fetchTree } from '../../lib/api'; 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'FolderGit2' is imported but never used.
+   ,-[src/features/workspace/Workspace.tsx:6:43]
+ 5 | import { format } from 'date-fns';
+ 6 | import { Tag, Paperclip, Calendar, Clock, FolderGit2, Plus, Trash2, ChevronLeft, ChevronRight, Edit2, Star, Folder, FileText } from 'lucide-react';
+   :                                           ^^^^^|^^^^
+   :                                                `-- 'FolderGit2' is imported here
+ 7 | import { fetchTree } from '../../lib/api'; 
+   `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Input' is imported but never used.
+    ,-[src/features/workspace/Workspace.tsx:12:10]
+ 11 | import { useAttachmentMutations } from '../../hooks/useAttachmentMutations';
+ 12 | import { Input } from '../../components/ui/Input';
+    :          ^^|^^
+    :            `-- 'Input' is imported here
+ 13 | import { Textarea } from '../../components/ui/Textarea';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Identifier 'Badge' is imported but never used.
+    ,-[src/features/workspace/Workspace.tsx:14:10]
+ 13 | import { Textarea } from '../../components/ui/Textarea';
+ 14 | import { Badge } from '../../components/ui/Badge';
+    :          ^^|^^
+    :            `-- 'Badge' is imported here
+ 15 | import { NodeModel } from '../../lib/api';
+    `----
+  help: Consider removing this import.
+
+  ! eslint(no-unused-vars): Variable 'removeMutation' is declared but never used. Unused variables should start with a '_'.
+    ,-[src/features/workspace/Workspace.tsx:74:27]
+ 73 |   const { updateMutation, createMutation, deleteMutation, toggleFavoriteMutation, archiveMutation, duplicateMutation, moveMutation } = useNodeMutations();
+ 74 |   const { uploadMutation, removeMutation } = useAttachmentMutations();
+    :                           ^^^^^^^|^^^^^^
+    :                                  `-- 'removeMutation' is declared here
+ 75 |   const { addToast } = useToast();
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'handleDeleteChild' is declared but never used. Unused variables should start with a '_'.
+     ,-[src/features/workspace/Workspace.tsx:198:9]
+ 197 | 
+ 198 |   const handleDeleteChild = (deleteDescendants: boolean) => {
+     :         ^^^^^^^^|^^^^^^^^
+     :                 `-- 'handleDeleteChild' is declared here
+ 199 |     if (deleteModalNode) {
+     `----
+  help: Consider removing this declaration.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'expandToNode', 'activeNode', and 'addRecentNode'
+     ,-[src/features/workspace/Workspace.tsx:136:6]
+ 125 |   useEffect(() => {
+ 126 |     if (activeNode) {
+     :         ^^^^^^^^^^
+ 127 |       addRecentNode(activeNode.id);
+     :       ^^^^^^^^^^^^^
+ 128 |       
+ 129 |       // Auto-expand sidebar to reveal this node
+ 130 |       // We need to find the path to it
+ 131 |       const pathToNode = findNodePathIds(treeData || [], activeNode.id);
+ 132 |       if (pathToNode) {
+ 133 |         expandToNode(pathToNode);
+     :         ^^^^^^^^^^^^
+ 134 |       }
+ 135 |     }
+ 136 |   }, [activeNode?.id, treeData]);
+     :      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 137 | 
+     `----
+  help: Either include it or remove the dependency array.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'activeNode', 'activeNode.title', 'activeNode.description', and 'activeNode.content'
+     ,-[src/features/workspace/Workspace.tsx:145:6]
+ 139 |   useEffect(() => {
+ 140 |     if (activeNode) {
+     :         ^^^^^^^^^^
+ 141 |       setTitle(activeNode.title);
+     :                ^^^^^^^^^^
+ 142 |       setDescription(activeNode.description || '');
+     :                      ^^^^^^^^^^
+ 143 |       setContent(activeNode.content || '');
+     :                  ^^^^^^^^^^
+ 144 |     }
+ 145 |   }, [activeNode?.id]); // Only run when the ID changes to prevent cursor jumps during typing
+     :      ^^^^^^^^^^^^^^^^
+ 146 | 
+     `----
+  help: Either include it or remove the dependency array.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has missing dependencies: 'activeNode', and 'handleAddChild'
+     ,-[src/features/workspace/Workspace.tsx:159:6]
+ 150 |       if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+ 151 |         if (activeNode) {
+     :             ^^^^^^^^^^
+ 152 |           e.preventDefault();
+ 153 |           handleAddChild();
+     :           ^^^^^^^^^^^^^^
+ 154 |         }
+ 155 |       }
+ 156 |     };
+ 157 |     window.addEventListener('keydown', handleGlobalKeyDown);
+ 158 |     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+ 159 |   }, [activeNode?.id]);
+     :      ^^^^^^^^^^^^^^^^
+ 160 | 
+     `----
+  help: Either include it or remove the dependency array.
+
+  ! react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'description'
+     ,-[src/features/workspace/Workspace.tsx:177:6]
+ 162 |   useEffect(() => {
+ 163 |     if (searchFocus?.type === 'description' && descriptionRef.current && description) {
+     :                                                                          ^^^^^|^^^^^
+     :                                                                               `-- useEffect uses `description` here
+ 164 |       const textarea = descriptionRef.current;
+ 165 |       textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+ 166 |       
+ 167 |       const query = searchFocus.query.toLowerCase();
+ 168 |       const text = description.toLowerCase();
+ 169 |       const index = text.indexOf(query);
+ 170 |       if (index !== -1) {
+ 171 |         setTimeout(() => {
+ 172 |           textarea.focus();
+ 173 |           textarea.setSelectionRange(index, index + query.length);
+ 174 |         }, 300);
+ 175 |       }
+ 176 |     }
+ 177 |   }, [searchFocus, activeNode?.id]);
+     :      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 178 | 
+     `----
+  help: Either include it or remove the dependency array.
+
+Found 31 warnings and 0 errors.
+Finished in 22ms on 55 files with 103 rules using 28 threads.

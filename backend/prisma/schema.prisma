@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Node {
+  id          String       @id @default(uuid())
+  title       String
+  description String?
+  content     String?
+  isArchived  Boolean      @default(false)
+  isFavorite  Boolean      @default(false)
+  isDeleted   Boolean      @default(false)
+  order       Int          @default(0)
+  
+  // Self-referencing relationship for infinite nesting
+  // Note: SQLite does not support Cascade on self-relations, so we rely on application logic or SetNull
+  parentId    String?
+  parent      Node?        @relation("NodeHierarchy", fields: [parentId], references: [id])
+  children    Node[]       @relation("NodeHierarchy")
+  
+  attachments Attachment[]
+  tags        Tag[]        // Implicit many-to-many
+  comments    Comment[]
+  histories   History[]
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Attachment {
+  id        String   @id @default(uuid())
+  filename  String
+  url       String
+  size      Int
+  mimeType  String
+  
+  nodeId    String
+  node      Node     @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  color     String?
+  
+  nodes     Node[]   // Implicit many-to-many
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  
+  nodeId    String
+  node      Node     @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model History {
+  id        String   @id @default(uuid())
+  action    String   // e.g. "CREATED", "UPDATED", "MOVED"
+  changes   String?  // JSON serialized representation of changes
+  
+  nodeId    String
+  node      Node     @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+}
