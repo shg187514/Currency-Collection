@@ -177,7 +177,7 @@ export function TreeSidebar() {
           <div className="flex items-center justify-between mb-2">
             <h2 className="font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2">
               <span className="w-6 h-6 bg-blue-500 rounded-md flex items-center justify-center text-white text-sm font-bold shadow-sm">T</span>
-              TreeSpace
+              My Currency Collection
             </h2>
             <div className="flex items-center gap-1">
               <Button variant="ghost" size="icon" title="View Trash" onClick={() => setIsTrashOpen(true)} className="h-8 w-8 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">

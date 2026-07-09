@@ -24,7 +24,7 @@ function NotFound() {
 function App() {
   return (
     <GlobalErrorBoundary>
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950"><div className="animate-pulse text-gray-500">Loading TreeSpace...</div></div>}>
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950"><div className="animate-pulse text-gray-500">Loading My Currency Collection...</div></div>}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<MainLayout />}>

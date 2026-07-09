@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "TreeSpace Backend",
+  "description": "My Currency Collection Backend",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

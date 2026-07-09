@@ -65,11 +65,11 @@ app.use('/uploads', express.static(uploadsDir, {
 }));
 
 app.get('/', (req: Request, res: Response) => {
-  res.json({ success: true, service: 'TreeSpace Backend', status: 'running' });
+  res.json({ success: true, service: 'My Currency Collection Backend', status: 'running' });
 });
 
 app.get('/api/health', (req: Request, res: Response) => {
-  res.json({ status: 'ok', message: 'TreeSpace API is running' });
+  res.json({ status: 'ok', message: 'My Currency Collection API is running' });
 });
 
 // Register feature routes

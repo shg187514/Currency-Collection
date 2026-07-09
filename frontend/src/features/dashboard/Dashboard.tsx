@@ -63,7 +63,7 @@ export function Dashboard() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Workspace Overview</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">Here is what is happening in your TreeSpace.</p>
+          <p className="text-gray-500 dark:text-gray-400 mt-2">Here is what is happening in your My Currency Collection.</p>
         </div>
 
         {/* Top KPI Cards */}

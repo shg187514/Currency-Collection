@@ -31,7 +31,7 @@ export default function DesignSystemViewer() {
 
       <div className="flex-1 p-8 space-y-12">
         <div>
-          <h1 className="text-3xl font-bold mb-8">TreeSpace Design System</h1>
+          <h1 className="text-3xl font-bold mb-8">My Currency Collection Design System</h1>
 
           <Breadcrumb>
             <BreadcrumbList>

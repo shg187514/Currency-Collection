@@ -1,6 +1,6 @@
-# TreeSpace API Documentation
+# My Currency Collection API Documentation
 
-This document describes the REST API endpoints provided by the TreeSpace backend.
+This document describes the REST API endpoints provided by the My Currency Collection backend.
 
 ## Base URL
 `/api`

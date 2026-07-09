@@ -62,7 +62,7 @@ export function Login() {
             <Leaf className="h-7 w-7 text-white" />
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 dark:from-white dark:to-gray-400 bg-clip-text text-transparent">
-            TreeSpace
+            My Currency Collection
           </CardTitle>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             Welcome back. Please log in to your account.

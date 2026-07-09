@@ -1,7 +1,7 @@
 {
-  "name": "treespace",
+  "name": "My Currency Collection",
   "version": "1.0.0",
-  "description": "TreeSpace Workspace Manager",
+  "description": "My Currency Collection Workspace Manager",
   "scripts": {
     "postinstall": "npm install --prefix backend && npm install --legacy-peer-deps --prefix frontend",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",

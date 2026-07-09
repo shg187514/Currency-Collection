@@ -1,6 +1,6 @@
-# TreeSpace
+# My Currency Collection
 
-TreeSpace is a cross-platform, production-ready workspace manager and hierarchy tree organization tool. 
+My Currency Collection is a cross-platform, production-ready workspace manager and hierarchy tree organization tool. 
 It operates identically across Windows, macOS, Linux, and Cloud environments (VPS, Docker, Render, Railway).
 
 ## Prerequisites
@@ -30,7 +30,7 @@ cp .env.example .env
 - `PORT`: The port the backend runs on (default: `5000`).
 - `DATABASE_URL`: Connection string for your database.
   - For **SQLite (Development)**: `file:./dev.db`
-  - For **PostgreSQL (Production)**: `postgresql://user:password@localhost:5432/treespace?schema=public`
+  - For **PostgreSQL (Production)**: `postgresql://user:password@localhost:5432/My Currency Collection?schema=public`
   - *Note: The system automatically switches database providers based on the URL prefix. No code changes required!*
 - `UPLOAD_DIRECTORY`: Folder where attachments are saved (default: `uploads`).
 
@@ -67,4 +67,4 @@ You can deploy this repository to any cloud provider by simply providing the `.e
 
 ## Cross-Platform Support
 
-TreeSpace uses Node.js `path` modules and dynamic directory resolution to ensure 100% compatibility across operating systems. There are no hardcoded Linux `/` or Windows `\` separators.
+My Currency Collection uses Node.js `path` modules and dynamic directory resolution to ensure 100% compatibility across operating systems. There are no hardcoded Linux `/` or Windows `\` separators.

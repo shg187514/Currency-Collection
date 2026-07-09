@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <ThemeProvider defaultTheme="system" storageKey="treespace-theme">
+        <ThemeProvider defaultTheme="system" storageKey="My Currency Collection-theme">
           <ToastProvider>
             <App />
           </ToastProvider>
