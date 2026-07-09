@@ -68,3 +68,6 @@ You can deploy this repository to any cloud provider by simply providing the `.e
 ## Cross-Platform Support
 
 My Currency Collection uses Node.js `path` modules and dynamic directory resolution to ensure 100% compatibility across operating systems. There are no hardcoded Linux `/` or Windows `\` separators.
+
+#MAITRAY AGRAWAL 8878525555
+#SHREYAS KULKARNI 9011861567
